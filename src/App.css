@@ -1,21 +1,29 @@
-.App {
+body {
+  background-color: #F5F5DC
+}
+
+.main-header {
   text-align: center;
+  margin: auto;
+  width: 100%;
+  font-size: 350%;
+  margin-top: 70px;
+  font-weight: bold;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.main-bg {
+  background-image: url("./images/cassette.svg");
+  background-position-y: -120px;
+  background-size: contain;
+  display: block;
+  margin: auto;
+  width: 45%;
+  height: 800px;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-intro {
-  font-size: large;
+.main-button {
+  text-align: center;
+  margin-top: -210px;
 }
 
 @keyframes App-logo-spin {
