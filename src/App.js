@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import IntroContainer from './components/IntroContainer'
+import ErrorContainer from './components/ErrorContainer'
 import { Link, Route } from 'react-router-dom'
 
 class App extends React.Component {
@@ -10,6 +11,7 @@ class App extends React.Component {
     return (
       <div>
         <Route exact path='/' component={ IntroContainer }/>
+        <Route exact path='/error' component={ ErrorContainer }/>
       </div>
     )
   }

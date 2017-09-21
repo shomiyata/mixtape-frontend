@@ -1,12 +1,15 @@
 import React from 'react'
 import IntroButton from './IntroButton'
 
-const IntroContainer = () => (
+const IntroContainer = () => {
+
+  return(
   <div>
     <div className="main-header">mixtapes aren't dead.</div>
-    <div className="main-bg"/>
+    <img src="cassette.svg"/>
     <IntroButton />
   </div>
-)
+  )
+}
 
 export default IntroContainer

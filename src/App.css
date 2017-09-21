@@ -11,19 +11,28 @@ body {
   font-weight: bold;
 }
 
-.main-bg {
-  background-image: url("./images/cassette.svg");
-  background-position-y: -120px;
-  background-size: contain;
-  display: block;
-  margin: auto;
-  width: 45%;
-  height: 800px;
-}
-
 .main-button {
   text-align: center;
-  margin-top: -210px;
+  margin-top: 20px;
+}
+
+img {
+  display: block;
+  margin: auto;
+  margin-top: 30px;
+  width: 50%
+}
+
+.ui.list>.item .header {
+  color: white;
+}
+
+.ui.list>a.item i.icon {
+  color: white;
+}
+
+.ui.list>.item .description {
+  color: white;
 }
 
 @keyframes App-logo-spin {
