@@ -5,7 +5,6 @@ import IntroContainer from './components/IntroContainer'
 import ErrorContainer from './components/ErrorContainer'
 import MixtapesContainer from './components/MixtapesContainer'
 import { Link, Route } from 'react-router-dom'
-// import Auth from './adapters/auth'
 
 class App extends React.Component {
 

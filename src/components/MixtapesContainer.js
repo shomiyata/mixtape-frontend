@@ -1,18 +1,23 @@
 import React from 'react'
 import Auth from '../adapters/auth'
+import { connect } from 'react-redux'
+import * as AuthActions from '../actions/auth'
+import { bindActionCreators } from 'redux'
 
 class MixtapesContainer extends React.Component {
 
   componentDidMount(){
     //if currentUser isn't defined...
+    if(!this.props.currentUser){
     const code = Auth.decipherCode(this.props)
     const payload = { code: code }
 
     Auth.login(payload)
-      .then(res => console.log(res))
-      //set state current user and token
-
-    //else, do nothing
+      .then(res => {
+        this.props.login(res.user)
+        localStorage.setItem("token", res.jwt)
+      })
+    }
   }
 
 
@@ -23,4 +28,16 @@ class MixtapesContainer extends React.Component {
   }
 }
 
-export default MixtapesContainer
+
+function mapStateToProps(state) {
+  return {
+    currentUser: state.currentUser,
+    loggedIn: state.loggedIn
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(AuthActions, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MixtapesContainer)

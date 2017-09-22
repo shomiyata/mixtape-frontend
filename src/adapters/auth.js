@@ -26,9 +26,9 @@ class Auth {
     .then(res => res.json())
   }
 
-  static logOut(){
-    localStorage.removeItem('token')
-  }
+  // static logOut(){
+  //   Logout all handled via AuthReducer
+  // }
 }
 
 export default Auth
