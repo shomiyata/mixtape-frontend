@@ -1,38 +1,51 @@
 import React from 'react'
 import Auth from '../adapters/auth'
+import Mixtapes from '../adapters/mixtapes'
 import { connect } from 'react-redux'
 import * as AuthActions from '../actions/auth'
 import { bindActionCreators } from 'redux'
+import MixtapesList from './MixtapesList'
+
 
 class MixtapesContainer extends React.Component {
 
   componentDidMount(){
-    //if currentUser isn't defined...
+    console.log(this.props)
     if(!this.props.currentUser){
-    const code = Auth.decipherCode(this.props)
-    const payload = { code: code }
+      const code = Auth.decipherCode(this.props)
+      const payload = { code: code }
 
-    Auth.login(payload)
-      .then(res => {
-        this.props.login(res.user)
-        localStorage.setItem("token", res.jwt)
-      })
+      Auth.login(payload)
+        .then(res => {
+          this.props.login(res.user)
+          localStorage.setItem("token", res.jwt)
+        })
+        .then(res => {
+          Mixtapes.getMixtapes(this.props.currentUserId, localStorage.getItem("token"))
+          .then(res => console.log('mixtapes from backend', res))
+        })
     }
+    //Users should have mixtapes in state already... but if not come back here, fetch mixtapes and put them in state.
+      // Mixtapes.getMixtapes(this.props.currentUser.id,localStorage.getItem("token"))
   }
-
 
   render(){
     return(
-      <div></div>
+      <div>
+        <MixtapesList />
+      </div>
     )
   }
 }
 
 
 function mapStateToProps(state) {
+  console.log('this is state in mapsStateToProps', state)
   return {
-    currentUser: state.currentUser,
-    loggedIn: state.loggedIn
+    currentUserId: state.auth.currentUserId,
+    currentUsername: state.auth.currentUsername,
+    loggedIn: state.auth.loggedIn,
+    mixtapes: state.mixtapes.mixtapes
   }
 }
 

@@ -4,11 +4,10 @@ import './App.css';
 import IntroContainer from './components/IntroContainer'
 import ErrorContainer from './components/ErrorContainer'
 import MixtapesContainer from './components/MixtapesContainer'
+import MixtapesForm from './components/MixtapesForm'
 import { Link, Route } from 'react-router-dom'
 
 class App extends React.Component {
-
-
 
   render() {
     return (
@@ -16,12 +15,10 @@ class App extends React.Component {
         <Route exact path='/' component={ IntroContainer }/>
         <Route exact path='/error' component={ ErrorContainer }/>
         <Route exact path='/login' component={ MixtapesContainer }/>
+        <Route exact path='/mixtapes/new' component ={ MixtapesForm }/>
       </div>
     )
   }
 }
 
 export default App;
-
-// background-image: url(/cassette.svg);
-// <a href="http://localhost:3000/api/v1/user/2/mixtapes/new">Get it</a>

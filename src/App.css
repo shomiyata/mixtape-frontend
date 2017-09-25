@@ -35,6 +35,18 @@ img {
   color: white;
 }
 
+.ui.modal {
+  width: 400px;
+}
+
+.ui.form {
+  max-width: 400px;
+}
+
+#playlist-header {
+  color: black;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

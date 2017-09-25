@@ -9,8 +9,10 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import authReducer from './reducers/authReducer'
+import mixtapesReducer from './reducers/mixtapesReducer'
 
-const store = createStore(authReducer, composeWithDevTools(applyMiddleware(thunk)))
+const rootReducer = combineReducers({auth: authReducer, mixtapes: mixtapesReducer})
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
 
 ReactDOM.render(<Provider store={store}><Router><App /></Router></Provider>, document.getElementById('root'));
 registerServiceWorker();

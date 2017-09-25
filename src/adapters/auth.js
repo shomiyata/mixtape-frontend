@@ -1,3 +1,5 @@
+import url from './url'
+
 class Auth {
 
   static decipherCode(props){
@@ -5,7 +7,7 @@ class Auth {
   }
 
   static login(userPayload){
-    return fetch('http://localhost:3000/api/v1/users/create',
+    return fetch(`${url}/users/create`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
@@ -15,9 +17,9 @@ class Auth {
     .then(res => res.json())
   }
 
-  static me(){
+  static verify(){
     const jwtToken = localStorage.getItem('token')
-    return fetch('http://localhost:3000/api/v1/me',{
+    return fetch(`${url}/verify`,{
       headers:{
         "Authorization":`Bearer ${jwtToken}`,
         "Accept":"application/json"
