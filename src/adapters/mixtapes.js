@@ -38,6 +38,11 @@ class Mixtapes {
       })
     .then(res => res.json())
   }
+
+  static getPlaylistForRecipient(mixtapeUrl){
+    return fetch(`${url}/mixtapes/${mixtapeUrl}`)
+    .then(res => res.json())
+  }
 }
 
 export default Mixtapes

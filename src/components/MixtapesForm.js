@@ -16,7 +16,9 @@ class MixtapesForm extends React.Component{
       mixtapeName: '',
       senderName: '',
       mixtapeNote: '',
-      sendEmail: false
+      sendEmail: false,
+      recipientEmail: '',
+      authorUsername: ''
     }
   }
 
@@ -24,49 +26,46 @@ class MixtapesForm extends React.Component{
   handleSenderNameInput = (e) => this.setState({ senderName: e.target.value })
   handleNoteInput = (e) => this.setState({ mixtapeNote: e.target.value })
   handleEmailInput = (e) => this.setState({ sendEmail: !this.state.sendEmail })
+  handleRecipientEmailInput = (e) => this.setState({ recipientEmail: e.target.value })
 
-  mailField = () => {
-    if(this.state.sendEmail){
-      return(
-        <Form.Field>
-          <label>Recipient email</label>
-          <input placeholder='e.g. Tunes 4 snuggles' onChange={this.handleNameInput} value={this.state.mixtapeName} />
-        </Form.Field>
-      )
-    }
-  }
+
+  findPlaylistFromName = (inputName) => this.props.playlists.find(playlist => playlist.name === inputName)
+
 
   handlePlaylistClick = (e) => {
     const selectedPlaylist = this.findPlaylistFromName(e.target.innerHTML)
     this.setState({
       playlistName: selectedPlaylist.name,
-      spotifyPlaylistId: selectedPlaylist.id
-    }, () => console.log('uhh did this work', this.state))
+      spotifyPlaylistId: selectedPlaylist.id,
+      ownerUsername: selectedPlaylist.owner.id
+    })
   }
 
-  findPlaylistFromName = (inputName) => this.props.playlists.find(playlist => playlist.name === inputName)
 
   handleSubmit = () => {
-    console.log(this.props)
+    const bodyToSubmit = {...this.state}
     this.props.handleMixtapeSubmit(this.state)
     Mixtapes.createPlaylist(this.props.currentUserId, localStorage.getItem("token"), this.state)
+      .then(res => this.props.handleMixtapeSubmit(res))
+      .then(res => console.log('did submittedMixtape get set?', this.props))
     this.setState({
       playlistName: '',
       mixtapeName: '',
       senderName: '',
       mixtapeNote: '',
+      recipientEmail: '',
       sendEmail: false
     })
-
   }
+
 
   render(){
     const mailField = (
           <Form.Field>
             <label>Recipient email</label>
-            <input placeholder='' onChange={this.handleNameInput} value={this.state.mixtapeName} />
+            <input placeholder='david@bowie.com' onChange={this.handleRecipientEmailInput} value={this.state.recipientEmail} />
           </Form.Field>
-      )
+    )
 
     return(
       <div>
@@ -100,7 +99,8 @@ function mapStateToProps(state) {
   console.log('state state', state)
   return {
     currentUserId: state.auth.currentUserId,
-    playlists: state.mixtapes.playlists
+    playlists: state.mixtapes.playlists,
+    submittedMixtape: state.mixtapes.submittedMixtape
   }
 }
 

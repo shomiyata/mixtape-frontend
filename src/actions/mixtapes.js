@@ -12,17 +12,10 @@ export function setPlaylists(playlists) {
   }
 }
 
-//just set state
-export function handleMixtapeSubmit(input) {
+
+export function handleMixtapeSubmit(mixtape) {
   return {
     type: "HANDLE_MIXTAPE_SUBMIT",
-    payload: {
-      spotifyPlaylistId: input.spotifyPlaylistId,
-      playlistName: input.playlistName,
-      mixtapeName: input.mixtapeName,
-      senderName: input.senderName,
-      mixtapeNote: input.mixtapeNote,
-      sendEmail: input.sendEmail
-    }
+    payload: mixtape
   }
 }
