@@ -6,7 +6,7 @@ import InfoButton from './InfoButton'
 const IntroButton = () => {
 
   return(
-    <div>
+    <div id="main-button-center">
       <InfoButton />
       <Button size='massive' name="login" color='brown' as="a" href="http://localhost:3000/api/v1/login">log in</Button>
     </div>

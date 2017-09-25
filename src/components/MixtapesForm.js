@@ -3,21 +3,25 @@ import { Button, Checkbox, Form } from 'semantic-ui-react'
 import MixtapesModal from './MixtapesModal'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { handleMixtapeSubmit } from '../actions/mixtapes'
+import * as MixtapesActions from '../actions/mixtapes'
+import Mixtapes from '../adapters/mixtapes'
 
 class MixtapesForm extends React.Component{
   constructor(){
     super()
 
     this.state = {
+      spotifyPlaylistId: '',
       playlistName: '',
       mixtapeName: '',
+      senderName: '',
       mixtapeNote: '',
       sendEmail: false
     }
   }
 
   handleNameInput = (e) => this.setState({ mixtapeName: e.target.value })
+  handleSenderNameInput = (e) => this.setState({ senderName: e.target.value })
   handleNoteInput = (e) => this.setState({ mixtapeNote: e.target.value })
   handleEmailInput = (e) => this.setState({ sendEmail: !this.state.sendEmail })
 
@@ -33,7 +37,27 @@ class MixtapesForm extends React.Component{
   }
 
   handlePlaylistClick = (e) => {
-    this.setState({ playlistName: e.target.innerHTML })
+    const selectedPlaylist = this.findPlaylistFromName(e.target.innerHTML)
+    this.setState({
+      playlistName: selectedPlaylist.name,
+      spotifyPlaylistId: selectedPlaylist.id
+    }, () => console.log('uhh did this work', this.state))
+  }
+
+  findPlaylistFromName = (inputName) => this.props.playlists.find(playlist => playlist.name === inputName)
+
+  handleSubmit = () => {
+    console.log(this.props)
+    this.props.handleMixtapeSubmit(this.state)
+    Mixtapes.createPlaylist(this.props.currentUserId, localStorage.getItem("token"), this.state)
+    this.setState({
+      playlistName: '',
+      mixtapeName: '',
+      senderName: '',
+      mixtapeNote: '',
+      sendEmail: false
+    })
+
   }
 
   render(){
@@ -47,11 +71,10 @@ class MixtapesForm extends React.Component{
     return(
       <div>
         <MixtapesModal handlePlaylistClick={this.handlePlaylistClick} />
-        <Form>
-          {/* onSubmit=this.props.handleSubmit */}
+        <Form onSubmit={this.handleSubmit}>
           <Form.Field>
             <label>Selected Playlist*</label>
-            <input value={this.state.playlistName} required />
+            <input placeholder='select your playlist by clicking the button above' value={this.state.playlistName} required />
           </Form.Field>
           <Form.Field>
             <label>Mixtape name*</label>
@@ -59,7 +82,7 @@ class MixtapesForm extends React.Component{
           </Form.Field>
           <Form.Field>
             <label>Sender name*</label>
-            <input placeholder='e.g. Tom, Cuddlebear, SecretAdmirer17' onChange={this.handleNameInput} value={this.state.mixtapeName} required />
+            <input placeholder='e.g. Tom, Cuddlebear, SecretAdmirer17' onChange={this.handleSenderNameInput} value={this.state.senderName} required />
           </Form.Field>
           <Form.TextArea label='Note' placeholder='Send a note along with your mixtape!' onChange={this.handleNoteInput} value={this.state.mixtapeNote} />
           <Form.Field>
@@ -73,8 +96,16 @@ class MixtapesForm extends React.Component{
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(handleMixtapeSubmit, dispatch)
+function mapStateToProps(state) {
+  console.log('state state', state)
+  return {
+    currentUserId: state.auth.currentUserId,
+    playlists: state.mixtapes.playlists
+  }
 }
 
-export default connect(null, mapDispatchToProps)(MixtapesForm)
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(MixtapesActions, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MixtapesForm)

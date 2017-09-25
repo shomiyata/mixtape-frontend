@@ -7,7 +7,7 @@ const MixtapesList = () => {
 
   return(
   <div>
-    <Route render={({ history}) => (
+    <Route render={({ history }) => (
     <Button circular icon='add circle' size="massive" type='button' onClick={() => { history.push('/mixtapes/new') }}/>
   )} />
   </div>

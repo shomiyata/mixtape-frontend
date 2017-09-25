@@ -25,10 +25,14 @@ class Mixtapes {
   }
 
   static createPlaylist(userId, token, body){
+    console.log(body)
     return fetch(`${url}/users/${userId}/mixtapes/new`,
       {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json'},
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
         mode: 'cors',
         body: JSON.stringify(body)
       })

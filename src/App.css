@@ -12,8 +12,8 @@ body {
 }
 
 .main-button {
-  text-align: center;
   margin-top: 20px;
+  display:inline-block;
 }
 
 img {
@@ -45,6 +45,10 @@ img {
 
 #playlist-header {
   color: black;
+}
+
+#main-button-center {
+  text-align: center;
 }
 
 @keyframes App-logo-spin {
