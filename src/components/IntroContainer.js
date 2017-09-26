@@ -6,8 +6,8 @@ const IntroContainer = () => {
 
   return(
   <div>
-    <div className="main-header">mixtapes aren't dead.</div>
-    <div className="cassette"><Cassette /></div>
+    <div className="main-header">save the mixtapes.</div>
+    <div id="cassette"><Cassette /></div>
     <IntroButton />
   </div>
   )

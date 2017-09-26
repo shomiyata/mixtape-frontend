@@ -11,8 +11,8 @@ import MixtapesListContainer from './MixtapesListContainer'
 class MixtapesContainer extends React.Component {
 
   componentDidMount(){
-    console.log(this.props)
-    if(!this.props.currentUser){
+    console.log('props from mixtapes container', this.props)
+    if(!this.props.currentUserId){
       const code = Auth.decipherCode(this.props)
       const payload = { code: code }
 

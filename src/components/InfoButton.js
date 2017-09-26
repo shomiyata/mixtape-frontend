@@ -6,7 +6,7 @@ const InfoButton = () => {
 
   return(
     <div className='main-button'>
-      <Modal trigger={<Button size='massive' name="info" color='grey'>info</Button>} basic size='small'>
+      <Modal trigger={<Button size='massive' name="info" color='pink'>info</Button>} basic size='small'>
         <Header icon='help' content='how this works' />
         <Modal.Content>
           <List>

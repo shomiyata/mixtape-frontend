@@ -8,7 +8,7 @@ import MixtapesForm from './components/MixtapesForm'
 import MixtapesViewer from './components/MixtapesViewer'
 import MixtapesFormContainer from './components/MixtapesFormContainer'
 import MixtapesLink from './components/MixtapesLink'
-import Cassette from './components/Cassette'
+import Navbar from './components/Navbar'
 import { Link, Route } from 'react-router-dom'
 
 class App extends React.Component {
@@ -16,7 +16,7 @@ class App extends React.Component {
   render() {
     return (
       <div id="background-all">
-        <Route exact path='/cassette' component={ Cassette } />
+        <Route path='/' component={ Navbar } />
         <Route exact path='/' component={ IntroContainer } />
         <Route exact path='/error' component={ ErrorContainer } />
         <Route exact path='/login' component={ MixtapesContainer } />
