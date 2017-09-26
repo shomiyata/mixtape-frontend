@@ -1,17 +1,51 @@
 import React from 'react'
-import { Button } from 'semantic-ui-react'
-import { Route } from 'react-router-dom'
+import { Card, Icon, Image } from 'semantic-ui-react'
+import { connect } from 'react-redux'
 
-const MixtapesList = () => {
+ class MixtapesList extends React.Component {
 
+   render(){
+     const playlistCards = this.props.mixtapes.map(mixtape => {
+        return (
+          <Card>
+            <Image src={mixtape.playlist_picture} />
+            <Card.Content>
+              <Card.Header>
+                {mixtape.name}
+              </Card.Header>
+              <Card.Meta>
+                <span className='date'>
+                  {mixtape.playlist_name}
+                </span>
+              </Card.Meta>
+              <Card.Description>
+                {mixtape.note? mixtape.note.slice(0, 75) + "..." : ''}
+              </Card.Description>
+            </Card.Content>
+              <Card.Content extra>
+                <a>
+                <Icon name='mail outline' />
+                 {mixtape.recipient_email}
+               </a>
+             </Card.Content>
+          </Card>
+        )
+      })
 
-  return(
-  <div>
-    <Route render={({ history }) => (
-    <Button circular icon='add circle' size="massive" type='button' onClick={() => { history.push('/mixtapes/new') }}/>
-  )} />
-  </div>
-  )
+     return(
+      <div>
+        <Card.Group id="playlist-cards">
+          {playlistCards}
+        </Card.Group>
+      </div>
+    )
+  }
 }
 
-export default MixtapesList
+function mapStateToProps(state) {
+  return {
+    mixtapes: state.mixtapes.mixtapes,
+  }
+}
+
+export default connect(mapStateToProps)(MixtapesList)

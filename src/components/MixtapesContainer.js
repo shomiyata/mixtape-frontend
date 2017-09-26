@@ -3,8 +3,9 @@ import Auth from '../adapters/auth'
 import Mixtapes from '../adapters/mixtapes'
 import { connect } from 'react-redux'
 import * as AuthActions from '../actions/auth'
+import * as MixtapesActions from '../actions/mixtapes'
 import { bindActionCreators } from 'redux'
-import MixtapesList from './MixtapesList'
+import MixtapesListContainer from './MixtapesListContainer'
 
 
 class MixtapesContainer extends React.Component {
@@ -20,19 +21,18 @@ class MixtapesContainer extends React.Component {
           this.props.login(res.user)
           localStorage.setItem("token", res.jwt)
         })
-        .then(res => {
-          Mixtapes.getMixtapes(this.props.currentUserId, localStorage.getItem("token"))
-          .then(res => console.log('mixtapes from backend', res))
-        })
+        .then(res => Mixtapes.getMixtapes(this.props.currentUserId, localStorage.getItem("token")))
+        .then(res => this.props.setMixtapes(res))
+        }
     }
     //Users should have mixtapes in state already... but if not come back here, fetch mixtapes and put them in state.
       // Mixtapes.getMixtapes(this.props.currentUser.id,localStorage.getItem("token"))
-  }
 
   render(){
+    console.log('did this work or what??', this.props)
     return(
       <div>
-        <MixtapesList />
+        <MixtapesListContainer />
       </div>
     )
   }
@@ -50,7 +50,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(AuthActions, dispatch)
+  return bindActionCreators({...AuthActions, ...MixtapesActions}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MixtapesContainer)

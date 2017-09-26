@@ -4,7 +4,10 @@ import MixtapesModal from './MixtapesModal'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as MixtapesActions from '../actions/mixtapes'
+import * as MixtapeActions from '../actions/mixtapes'
 import Mixtapes from '../adapters/mixtapes'
+import MixtapesLink from './MixtapesLink'
+import { Route } from 'react-router-dom'
 
 class MixtapesForm extends React.Component{
   constructor(){
@@ -18,7 +21,8 @@ class MixtapesForm extends React.Component{
       mixtapeNote: '',
       sendEmail: false,
       recipientEmail: '',
-      authorUsername: ''
+      ownerUsername: '',
+      playlistPicture: ''
     }
   }
 
@@ -37,17 +41,17 @@ class MixtapesForm extends React.Component{
     this.setState({
       playlistName: selectedPlaylist.name,
       spotifyPlaylistId: selectedPlaylist.id,
-      ownerUsername: selectedPlaylist.owner.id
+      ownerUsername: selectedPlaylist.owner.id,
+      playlistPicture: selectedPlaylist.images[0].url
     })
   }
-
 
   handleSubmit = () => {
     const bodyToSubmit = {...this.state}
     this.props.handleMixtapeSubmit(this.state)
     Mixtapes.createPlaylist(this.props.currentUserId, localStorage.getItem("token"), this.state)
       .then(res => this.props.handleMixtapeSubmit(res))
-      .then(res => console.log('did submittedMixtape get set?', this.props))
+
     this.setState({
       playlistName: '',
       mixtapeName: '',
@@ -61,17 +65,21 @@ class MixtapesForm extends React.Component{
 
   render(){
     const mailField = (
-          <Form.Field>
-            <label>Recipient email</label>
-            <input placeholder='david@bowie.com' onChange={this.handleRecipientEmailInput} value={this.state.recipientEmail} />
-          </Form.Field>
+      <Form.Field>
+        <label>Recipient email</label>
+        <input placeholder='david@bowie.com' onChange={this.handleRecipientEmailInput} value={this.state.recipientEmail} />
+      </Form.Field>
     )
+
+    const urlMessage = this.props.submittedMixtape? <MixtapesLink url={this.props.submittedMixtape.url} /> : null
 
     return(
       <div>
+        {urlMessage}
         <MixtapesModal handlePlaylistClick={this.handlePlaylistClick} />
         <Form onSubmit={this.handleSubmit}>
-          <Form.Field>
+          <Form.Field >
+            <br/>
             <label>Selected Playlist*</label>
             <input placeholder='select your playlist by clicking the button above' value={this.state.playlistName} required />
           </Form.Field>
@@ -88,12 +96,14 @@ class MixtapesForm extends React.Component{
             <Checkbox label='Send mixtape via email' onChange={this.handleEmailInput} value={this.state.sendEmail} />
           </Form.Field>
             {this.state.sendEmail? mailField : ''}
-          <Button type='submit'>Submit</Button>
+            <Button type='submit' type='button' onClick={this.handleSubmit}>submit</Button>
         </Form>
       </div>
     )
   }
 }
+//
+
 
 function mapStateToProps(state) {
   console.log('state state', state)

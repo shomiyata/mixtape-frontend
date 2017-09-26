@@ -9,7 +9,6 @@ function authReducer(state = {currentUserId: null, currentUsername: null, logged
     default:
       return state
   }
-
 }
 
 export default authReducer
