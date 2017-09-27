@@ -1,7 +1,7 @@
 import React from 'react'
 import SpotifyPlayer from './SpotifyPlayer'
 import Mixtapes from '../adapters/mixtapes'
-import MixtapesNote from './MixtapesNote'
+import MixtapesNoteModal from './MixtapesNoteModal'
 
 class MixtapesViewer extends React.Component {
   constructor(){
@@ -39,8 +39,8 @@ class MixtapesViewer extends React.Component {
     return (
       <div>
         <div className="main-header">your mixtape from {this.state.senderName}.</div>
-        <MixtapesNote content={this.state.mixtapeNote} />
         <SpotifyPlayer ownerUsername={this.state.ownerUsername} spotifyPlaylistId={this.state.spotifyPlaylistId} />
+        {this.state.mixtapeNote? <MixtapesNoteModal content={this.state.mixtapeNote} /> : ''}
       </div>
     )
   }

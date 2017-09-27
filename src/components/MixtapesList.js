@@ -34,9 +34,9 @@ import { connect } from 'react-redux'
 
      return(
       <div>
-        <Card.Group id="playlist-cards">
-          {playlistCards}
-        </Card.Group>
+          <Card.Group id="playlist-cards" >
+            {playlistCards}
+          </Card.Group>
       </div>
     )
   }

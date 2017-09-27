@@ -48,6 +48,10 @@ body {
   font-weight: bold;
 }
 
+.ui.button {
+  border-radius: 0;
+}
+
 .main-button {
   margin-top: 20px;
   display:inline-block;
@@ -68,10 +72,6 @@ body {
 
 .ui.modal {
   width: 400px;
-}
-
-.ui.form {
-
 }
 
 .ui.message .header+p {
@@ -99,6 +99,20 @@ body {
   font-weight: 900;
 }
 
+.feed {
+  background-color: #e2dee5;
+  position: fixed;
+  right: 10;
+  width: 23%;
+  z-index: 100;
+  border-radius: .28571429rem;
+  opacity: 0.85;
+}
+
+.ui.modal {
+  left: 65%;
+}
+
 
 #background-all {
   width: 100%;
@@ -116,8 +130,12 @@ body {
   color: black;
 }
 
-#main-button-center {
+.main-button-center {
   text-align: center;
+}
+
+#note-button-center {
+  margin-left: 700%;
 }
 
 #spotify-player {
@@ -133,7 +151,7 @@ body {
   margin: auto;
   width: 30%;
   margin-top: 60px;
-  background-color: #F9E79F;
+  background-color: #e2dee5;
 }
 
 #mixtapes-form-container {
