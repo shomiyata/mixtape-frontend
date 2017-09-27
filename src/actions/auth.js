@@ -6,9 +6,8 @@ export function login(user) {
   }
 }
 
-export function logout(user) {
+export function logout() {
   return {
-    type: "LOG_OUT",
-    payload: user
+    type: "LOG_OUT"
   }
 }

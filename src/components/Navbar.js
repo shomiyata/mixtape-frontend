@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { Menu, Segment } from 'semantic-ui-react'
 import { Router } from 'react-router-dom';
+import { connect } from 'react-redux'
+import * as AuthActions from '../actions/auth'
+import { bindActionCreators } from 'redux'
 
 class Navbar extends Component {
   state = { activeItem: 'HOME' }
@@ -13,7 +16,8 @@ class Navbar extends Component {
     else if(name === 'NEW MIXTAPE'){
       this.props.history.push('/mixtapes/new')
     } else {
-      //logout screen
+      this.props.history.push('/')
+      this.props.logout()
     }
   }
 
@@ -40,4 +44,8 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(AuthActions, dispatch)
+}
+
+export default connect(null, mapDispatchToProps)(Navbar)

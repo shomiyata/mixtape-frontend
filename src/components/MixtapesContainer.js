@@ -29,7 +29,7 @@ class MixtapesContainer extends React.Component {
       // Mixtapes.getMixtapes(this.props.currentUser.id,localStorage.getItem("token"))
 
   render(){
-    console.log('did this work or what??', this.props)
+    console.log('did this work or what?', this.props)
     return(
       <div>
         <MixtapesListContainer />
