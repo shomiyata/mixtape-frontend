@@ -55,7 +55,7 @@ class Mixtapes {
         mode: 'cors',
         body: JSON.stringify(body)
       })
-    .then(res => res.json())
+    // .then(res => res.json())
   }
 
 

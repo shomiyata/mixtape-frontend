@@ -43,7 +43,7 @@ class MixtapesForm extends React.Component{
       playlistName: selectedPlaylist.name,
       spotifyPlaylistId: selectedPlaylist.id,
       ownerUsername: selectedPlaylist.owner.id,
-      playlistPicture: selectedPlaylist.images[0].url
+      playlistPicture: selectedPlaylist.images[0] ? selectedPlaylist.images[0].url : ''
     })
   }
 

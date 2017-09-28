@@ -119,6 +119,14 @@ body {
   left: 65%;
 }
 
+.sub-header {
+  text-align: center;
+  margin: auto;
+  width: 100%;
+  font-size: 200%;
+  margin-top: 30px;
+  font-weight: bold;
+}
 
 #background-all {
   width: 100%;

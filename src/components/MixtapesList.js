@@ -9,7 +9,7 @@ import { connect } from 'react-redux'
      const playlistCards = this.props.mixtapes.map(mixtape => {
         return (
           <Card href={'http://localhost:3001/mixtapes/listen?' + mixtape.url} target="_blank">
-            <Image src={mixtape.playlist_picture} />
+            <Image src={mixtape.playlist_picture ? mixtape.playlist_picture : "../../default_album_cover.jpg"} />
             <Card.Content>
               <Card.Header>
                 {mixtape.name}

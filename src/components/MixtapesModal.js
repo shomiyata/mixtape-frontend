@@ -26,10 +26,11 @@ import * as MixtapesActions from '../actions/mixtapes'
    handleClose = () => this.setState({ modalOpen: false })
 
    render(){
+     console.log('what is going on??', this.props.playlists)
      const playlistContent = this.props.playlists.map(playlist => {
         return (
           <List.Item>
-            <Image avatar src={playlist.images[0].url} />
+            {playlist.images[0] ? <Image avatar src={playlist.images[0].url} /> : <Image avatar src="../../default_album_cover.jpg" />}
             <List.Content>
               <List.Header id="playlist-header" value={playlist.name} onClick={this.handlePlaylistClick}>{playlist.name}</List.Header>
               <a href={playlist.external_urls.spotify} target="_blank">Open playlist</a>

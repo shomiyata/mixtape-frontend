@@ -8,6 +8,7 @@ import * as MixtapesActions from '../actions/mixtapes'
 import * as TracksActions from '../actions/tracks'
 import { bindActionCreators } from 'redux'
 import MixtapesListContainer from './MixtapesListContainer'
+import Cassette from './Cassette'
 
 
 class SuccessfullyAdded extends React.Component {
@@ -18,15 +19,20 @@ class SuccessfullyAdded extends React.Component {
 
       Auth.permission(payload)
         .then(res => {
-          console.log('this is res.. am I gettinga nything?', res) //no!
           this.props.login(res.user)
           localStorage.setItem("token", res.jwt)
         })
-        .then(res => Tracks.getTracks(localStorage.getItem("mixtapeId"), localStorage.getItem("token")))
-        .then(res => this.props.setTracks(res))
         .then(res => {
-          const body = { "name": localStorage.getItem("playlistName") }
-        Mixtapes.buildPlaylist(body, localStorage.getItem("token"))
+          const body = {
+            "mixtapeId": localStorage.getItem("mixtapeId"),
+            "playlistName": localStorage.getItem("playlistName")
+          }
+          Mixtapes.buildPlaylist(body, localStorage.getItem("token"))
+        })
+        .then(res => {
+          localStorage.removeItem("mixtapeId")
+          localStorage.removeItem("mixtape")
+          localStorage.removeItem("playlistName")
         })
         // .then(res => res.id )
        //create playlist
@@ -38,7 +44,8 @@ class SuccessfullyAdded extends React.Component {
   render(){
     return(
       <div>
-        werkin'
+        <div className="main-header">successfully added to your Spotify!</div>
+        <div id="cassette"><Cassette /></div>
       </div>
     )
   }
