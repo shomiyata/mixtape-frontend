@@ -8,7 +8,9 @@ import MixtapesForm from './components/MixtapesForm'
 import MixtapesViewer from './components/MixtapesViewer'
 import MixtapesFormContainer from './components/MixtapesFormContainer'
 import MixtapesLink from './components/MixtapesLink'
+import SuccessfullyAdded from './components/SuccessfullyAdded'
 import Navbar from './components/Navbar'
+import authorize from './components/Authorize'
 import { Link, Route } from 'react-router-dom'
 
 class App extends React.Component {
@@ -19,15 +21,13 @@ class App extends React.Component {
         <Route path='/' component={ Navbar } />
         <Route exact path='/' component={ IntroContainer } />
         <Route exact path='/error' component={ ErrorContainer } />
-        <Route exact path='/login' component={ MixtapesContainer } />
-        <Route exact path='/mixtapes/new' component ={ MixtapesFormContainer } />
+        <Route path='/login' component={ authorize(MixtapesContainer) } />
+        <Route exact path='/mixtapes/new' component ={ authorize(MixtapesFormContainer) } />
         <Route path='/mixtapes/listen' component={ MixtapesViewer } />
-        <Route path='/mixtapes/link' component={ MixtapesLink } />
+        <Route exact path='/success' component={ authorize(SuccessfullyAdded) } />
       </div>
     )
   }
 }
 
 export default App;
-
-// id="background-all"

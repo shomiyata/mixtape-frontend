@@ -3,7 +3,7 @@ import { Router, Link, Route } from 'react-router-dom'
 import { Button, Header, Icon, Modal, List } from 'semantic-ui-react'
 import InfoButton from './InfoButton'
 
-const IntroButton = () => {
+const LoginButton = () => {
 
   return(
     <div className="main-button-center">
@@ -13,4 +13,4 @@ const IntroButton = () => {
   )
 }
 
-export default IntroButton
+export default LoginButton

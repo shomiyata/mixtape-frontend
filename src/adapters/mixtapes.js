@@ -43,6 +43,22 @@ class Mixtapes {
     return fetch(`${url}/mixtapes/${mixtapeUrl}`)
     .then(res => res.json())
   }
+
+  static buildPlaylist(body, token){
+    return fetch(`${url}/mixtapes/build`,
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        mode: 'cors',
+        body: JSON.stringify(body)
+      })
+    .then(res => res.json())
+  }
+
+
 }
 
 export default Mixtapes

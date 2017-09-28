@@ -4,10 +4,11 @@ import { connect } from 'react-redux'
 
  class MixtapesList extends React.Component {
 
+
    render(){
      const playlistCards = this.props.mixtapes.map(mixtape => {
         return (
-          <Card>
+          <Card href={'http://localhost:3001/mixtapes/listen?' + mixtape.url} target="_blank">
             <Image src={mixtape.playlist_picture} />
             <Card.Content>
               <Card.Header>

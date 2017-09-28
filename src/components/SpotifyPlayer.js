@@ -6,7 +6,7 @@ const SpotifyPlayer = (props) => {
 
   return(
   <div>
-    <iframe id='spotify-player' src={srcCode} width="40%" height="600px" frameborder="0" allowtransparency="true"></iframe>
+    <iframe id='spotify-player' src={srcCode} width="40%" height="550px" frameborder="0" allowtransparency="true"></iframe>
   </div>
   )
 }

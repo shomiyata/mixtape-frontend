@@ -2,6 +2,7 @@ import React from 'react'
 import SpotifyPlayer from './SpotifyPlayer'
 import Mixtapes from '../adapters/mixtapes'
 import MixtapesNoteModal from './MixtapesNoteModal'
+import PlaylistCreateButton from './PlaylistCreateButton'
 
 class MixtapesViewer extends React.Component {
   constructor(){
@@ -21,7 +22,6 @@ class MixtapesViewer extends React.Component {
 
   componentDidMount(){
     Mixtapes.getPlaylistForRecipient(this.props.location.search.slice(1))
-      // .then(res => console.log(res))
       .then(res => this.setState({
         spotifyPlaylistId: res.spotify_playlist_id,
         playlistName: res.playlist_name,
@@ -40,7 +40,10 @@ class MixtapesViewer extends React.Component {
       <div>
         <div className="main-header">your mixtape from {this.state.senderName}.</div>
         <SpotifyPlayer ownerUsername={this.state.ownerUsername} spotifyPlaylistId={this.state.spotifyPlaylistId} />
-        {this.state.mixtapeNote? <MixtapesNoteModal content={this.state.mixtapeNote} /> : ''}
+        <div className="main-button-center">
+          <PlaylistCreateButton playlistName={this.state.playlistName} spotifyPlaylistId={this.state.spotifyPlaylistId}/>
+          {this.state.mixtapeNote? <MixtapesNoteModal content={this.state.mixtapeNote} /> : ''}
+        </div>
       </div>
     )
   }

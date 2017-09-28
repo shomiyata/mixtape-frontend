@@ -7,6 +7,7 @@ import * as MixtapesActions from '../actions/mixtapes'
 import * as MixtapeActions from '../actions/mixtapes'
 import Mixtapes from '../adapters/mixtapes'
 import MixtapesLink from './MixtapesLink'
+import Loading from './Loading'
 import { Route } from 'react-router-dom'
 
 class MixtapesForm extends React.Component{
@@ -47,6 +48,7 @@ class MixtapesForm extends React.Component{
   }
 
   handleSubmit = () => {
+    this.setState({ isLoading: true })
     const bodyToSubmit = {...this.state}
     this.props.handleMixtapeSubmit(this.state)
     Mixtapes.createPlaylist(this.props.currentUserId, localStorage.getItem("token"), this.state)
@@ -58,7 +60,7 @@ class MixtapesForm extends React.Component{
       senderName: '',
       mixtapeNote: '',
       recipientEmail: '',
-      sendEmail: false
+      sendEmail: false,
     })
   }
 
@@ -71,7 +73,7 @@ class MixtapesForm extends React.Component{
       </Form.Field>
     )
 
-    const urlMessage = this.props.submittedMixtape? <MixtapesLink url={this.props.submittedMixtape.url} /> : null
+    const urlMessage = this.props.submittedMixtape ? <MixtapesLink url={this.props.submittedMixtape.url} /> : ''
 
     return(
       <div>

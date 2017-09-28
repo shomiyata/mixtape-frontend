@@ -17,6 +17,17 @@ class Auth {
     .then(res => res.json())
   }
 
+  static permission(userPayload){
+    return fetch(`${url}/permission`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json'},
+        mode: 'cors',
+        body: JSON.stringify(userPayload)
+      })
+    .then(res => res.json())
+  }
+
   static verify(){
     const jwtToken = localStorage.getItem('token')
     return fetch(`${url}/verify`,{

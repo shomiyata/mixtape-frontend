@@ -1,5 +1,5 @@
 import React from 'react'
-import IntroButton from './IntroButton'
+import LoginButton from './LoginButton'
 import Cassette from './Cassette'
 
 const IntroContainer = () => {
@@ -8,7 +8,7 @@ const IntroContainer = () => {
   <div>
     <div className="main-header">save the mixtapes.</div>
     <div id="cassette"><Cassette /></div>
-    <IntroButton />
+    <LoginButton />
   </div>
   )
 }
