@@ -21,10 +21,41 @@ class Navbar extends Component {
     }
   }
 
-  render() {
-    const { activeItem } = this.state
+  handleLoginClick = () => {
+    this.props.isLoading(true)
+    localStorage.setItem("loading", true)
+    window.location = "http://localhost:3000/api/v1/login"
+  }
 
-    if(!localStorage.getItem('token')){
+
+menuItems = () => {
+  const { activeItem } = this.state
+
+  if(this.props.loading){
+    return(
+      <Menu.Menu position='right'>
+        <Menu.Item name='LOADING!' />
+      </Menu.Menu>
+        )
+    // return (<h1>{this.props.loading} </h1>)
+  } else if(!localStorage.getItem('token')){
+    return(
+      <Menu.Menu position='right'>
+        <Menu.Item name='LOG IN' active={activeItem === 'LOG IN'} onClick={this.handleLoginClick} />
+      </Menu.Menu>
+        )
+  } else {
+    return (
+      <Menu.Menu position='right'>
+        <Menu.Item name='YOUR MIXTAPES' active={activeItem === 'YOUR MIXTAPES'} onClick={this.handleItemClick} />
+        <Menu.Item name='NEW MIXTAPE' active={activeItem === 'NEW MIXTAPE'} onClick={this.handleItemClick} />
+        <Menu.Item name='LOG OUT' active={activeItem === 'LOG OUT'} onClick={this.handleItemClick} />
+      </Menu.Menu>
+    )
+  }
+}
+
+  render() {
       return(
         <Segment inverted>
           <Menu inverted pointing secondary>
@@ -34,31 +65,16 @@ class Navbar extends Component {
                 <p className="main-logo">MIXTAPES AREN'T DEAD</p>
               </Menu.Item>
             </Menu.Menu>
-            <Menu.Menu position='right'>
-              <Menu.Item name='LOG IN' active={activeItem === 'LOG IN'} onClick={this.handleItemClick} href="http://localhost:3000/api/v1/login" />
-            </Menu.Menu>
+            {this.menuItems()}
           </Menu>
         </Segment>
-      )
-    } else {
-    return (
-      <Segment inverted>
-        <Menu inverted pointing secondary>
-          <Menu.Menu>
-            <Menu.Item className="">
-              <img src="./cassette-logo.svg" className="main-logo-picture"/>
-              <p className="main-logo">MIXTAPES AREN'T DEAD</p>
-            </Menu.Item>
-          </Menu.Menu>
-          <Menu.Menu position='right'>
-            <Menu.Item name='YOUR MIXTAPES' active={activeItem === 'YOUR MIXTAPES'} onClick={this.handleItemClick} />
-            <Menu.Item name='NEW MIXTAPE' active={activeItem === 'NEW MIXTAPE'} onClick={this.handleItemClick} />
-            <Menu.Item name='LOG OUT' active={activeItem === 'LOG OUT'} onClick={this.handleItemClick} />
-          </Menu.Menu>
-        </Menu>
-      </Segment>
     )
-    }
+  }
+}
+
+function mapStateToProps(state) {
+  return {
+    loading: state.auth.isLoading
   }
 }
 
@@ -66,4 +82,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(AuthActions, dispatch)
 }
 
-export default connect(null, mapDispatchToProps)(Navbar)
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar)

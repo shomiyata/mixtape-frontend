@@ -21,9 +21,9 @@ class App extends React.Component {
         <Route path='/' component={ Navbar } />
         <Route exact path='/' component={ IntroContainer } />
         <Route exact path='/error' component={ ErrorContainer } />
+        <Route path='/mixtapes/listen' component={ MixtapesViewer } />
         <Route path='/login' component={ authorize(MixtapesContainer) } />
         <Route exact path='/mixtapes/new' component ={ authorize(MixtapesFormContainer) } />
-        <Route path='/mixtapes/listen' component={ MixtapesViewer } />
         <Route exact path='/success' component={ authorize(SuccessfullyAdded) } />
       </div>
     )

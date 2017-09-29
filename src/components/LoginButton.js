@@ -1,16 +1,39 @@
 import React from 'react'
 import { Router, Link, Route } from 'react-router-dom'
 import { Button, Header, Icon, Modal, List } from 'semantic-ui-react'
+import { connect } from 'react-redux'
 import InfoButton from './InfoButton'
+import * as AuthActions from '../actions/auth'
+import { bindActionCreators } from 'redux'
 
-const LoginButton = () => {
+class LoginButton extends React.Component {
 
-  return(
-    <div className="main-button-center">
-      <InfoButton />
-      <Button size='massive' name="login" color='teal' as="a" href="http://localhost:3000/api/v1/login">log in</Button>
-    </div>
-  )
+  handleButton = () => {
+    this.props.isLoading(true)
+    localStorage.setItem("loading", true)
+    window.location = "http://localhost:3000/api/v1/login"
+  }
+
+
+  render(){
+    return(
+      <div className="main-button-center">
+        <InfoButton />
+        <Button size='massive' name="login" color='teal' as="a" onClick={this.handleButton}>log in</Button>
+      </div>
+    )
+  }
 }
 
-export default LoginButton
+function mapStateToProps(state) {
+  console.log('this is state in mapsStateToProps', state)
+  return {
+    isLoading: state.auth.isLoading,
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(AuthActions, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginButton)

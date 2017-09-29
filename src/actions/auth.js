@@ -11,3 +11,10 @@ export function logout() {
     type: "LOG_OUT"
   }
 }
+
+export function isLoading(load) {
+  return {
+    type: "IS_LOADING",
+    payload: load
+  }
+}

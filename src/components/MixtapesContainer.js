@@ -10,6 +10,17 @@ import MixtapesListContainer from './MixtapesListContainer'
 
 class MixtapesContainer extends React.Component {
 
+  gotIn = () => {
+    localStorage.setItem("loading", false)
+    this.props.isLoading(false)
+    this.getMixtapes()
+  }
+
+  getMixtapes = () => {
+    Mixtapes.getMixtapes(this.props.currentUserId, localStorage.getItem("token"))
+      .then(res => this.props.setMixtapes(res))
+  }
+
   componentDidMount(){
     console.log('props from mixtapes container', this.props)
 
@@ -21,19 +32,20 @@ class MixtapesContainer extends React.Component {
         .then(res => {
           this.props.login(res.user)
           localStorage.setItem("token", res.jwt)
+          this.gotIn()
         })
       console.log("login with auth.login")
     } else if(localStorage.getItem("token")){
       Auth.verify()
       .then(res => this.props.login(res))
-      .then(res => console.log("re-entry with verify", this.props))
+      .then(res => this.gotIn())
+
     } else {
       this.props.history.push("/")
       console.log("rejected")
     }
 
-    Mixtapes.getMixtapes(this.props.currentUserId, localStorage.getItem("token"))
-      .then(res => this.props.setMixtapes(res))
+
     }
 
 
@@ -54,7 +66,8 @@ function mapStateToProps(state) {
     currentUserId: state.auth.currentUserId,
     currentUsername: state.auth.currentUsername,
     loggedIn: state.auth.loggedIn,
-    mixtapes: state.mixtapes.mixtapes
+    mixtapes: state.mixtapes.mixtapes,
+    loading: state.auth.isLoading
   }
 }
 
