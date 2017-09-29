@@ -2,7 +2,7 @@ import React from 'react'
 
 function authorize(RenderedComponent, props){
   return class extends React.Component {
-    componentWillMount() {
+    componentDidMount() {
       if (!localStorage.getItem('token')) {
         this.props.history.push("/")
       }

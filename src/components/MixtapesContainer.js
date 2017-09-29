@@ -12,7 +12,8 @@ class MixtapesContainer extends React.Component {
 
   componentDidMount(){
     console.log('props from mixtapes container', this.props)
-    if(!this.props.currentUserId){
+
+    if(!localStorage.getItem("token") && this.props.location.search){
       const code = Auth.decipherCode(this.props)
       const payload = { code: code }
 
@@ -21,12 +22,20 @@ class MixtapesContainer extends React.Component {
           this.props.login(res.user)
           localStorage.setItem("token", res.jwt)
         })
-        .then(res => Mixtapes.getMixtapes(this.props.currentUserId, localStorage.getItem("token")))
-        .then(res => this.props.setMixtapes(res))
-        }
+      console.log("login with auth.login")
+    } else if(localStorage.getItem("token")){
+      Auth.verify()
+      .then(res => this.props.login(res))
+      .then(res => console.log("re-entry with verify", this.props))
+    } else {
+      this.props.history.push("/")
+      console.log("rejected")
     }
-    //Users should have mixtapes in state already... but if not come back here, fetch mixtapes and put them in state.
-      // Mixtapes.getMixtapes(this.props.currentUser.id,localStorage.getItem("token"))
+
+    Mixtapes.getMixtapes(this.props.currentUserId, localStorage.getItem("token"))
+      .then(res => this.props.setMixtapes(res))
+    }
+
 
   render(){
     console.log('did this work or what?', this.props)
