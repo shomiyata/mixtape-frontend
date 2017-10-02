@@ -25,7 +25,7 @@ class MixtapesViewer extends React.Component {
       .then(res => this.setState({
         spotifyPlaylistId: res.spotify_playlist_id,
         playlistName: res.playlist_name,
-        mixtapeName: res.playlist_name,
+        mixtapeName: res.name,
         senderName: res.sender_name,
         mixtapeNote: res.note,
         senderUsername: res.sender_spotify_username,
@@ -38,11 +38,11 @@ class MixtapesViewer extends React.Component {
     console.log('state from mixtapes viewer', this.state)
     return (
       <div>
-        <div className="main-header">{this.state.playlistName}</div>
+        <div className="main-header">{this.state.mixtapeName}</div>
         <div className="sub-header">your mixtape from {this.state.senderName}.</div>
         <SpotifyPlayer ownerUsername={this.state.ownerUsername} spotifyPlaylistId={this.state.spotifyPlaylistId} />
         <div className="main-button-center">
-          <PlaylistCreateButton playlistName={this.state.playlistName} spotifyPlaylistId={this.state.spotifyPlaylistId}/>
+          <PlaylistCreateButton mixtapeName={this.state.mixtapeName} spotifyPlaylistId={this.state.spotifyPlaylistId}/>
           {this.state.mixtapeNote? <MixtapesNoteModal content={this.state.mixtapeNote} /> : ''}
         </div>
       </div>

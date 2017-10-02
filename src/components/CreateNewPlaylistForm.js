@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Checkbox, Form } from 'semantic-ui-react'
+import { Button, Checkbox, Form, Input, Icon } from 'semantic-ui-react'
 import MixtapesModal from './MixtapesModal'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -8,9 +8,8 @@ import Mixtapes from '../adapters/mixtapes'
 import MixtapesLink from './MixtapesLink'
 import Loading from './Loading'
 import { Route } from 'react-router-dom'
-import CreateNewPlaylistButton from './CreateNewPlaylistButton'
 
-class MixtapesForm extends React.Component{
+class CreateNewPlaylistForm extends React.Component{
   constructor(){
     super()
 
@@ -78,18 +77,23 @@ class MixtapesForm extends React.Component{
     return(
       <div>
         {urlMessage}
-        <CreateNewPlaylistButton />
         <MixtapesModal handlePlaylistClick={this.handlePlaylistClick} />
         <Form onSubmit={this.handleSubmit}>
           <Form.Field >
             <br/>
-            <label>Selected playlist*</label>
-            <input placeholder='Select your playlist by clicking the button above' value={this.state.playlistName} required />
+            <label>Playlist name*</label>
+            <input placeholder='Give your new playlist a name' value={this.state.playlistName} required />
           </Form.Field>
           <Form.Field>
-            <label>Mixtape name*</label>
-            <input placeholder='e.g. Tunes 4 snuggles' onChange={this.handleNameInput} value={this.state.mixtapeName} required />
+            <label>Search for track</label>
+              <Input
+    icon={<Icon name='search' inverted circular link />}
+    placeholder='Enter an track, artist, or album name'
+  />
+            {/* <input placeholder='' onChange={this.handleNameInput} value={this.state.mixtapeName} id="search-field" required /> */}
+            {/* <Button circular icon='search' color='pink' id='search-button'/> */}
           </Form.Field>
+          {/* //list of added tracks */}
           <Form.Field>
             <label>Sender name*</label>
             <input placeholder='e.g. Tom, Cuddlebear, SecretAdmirer17' onChange={this.handleSenderNameInput} value={this.state.senderName} required />
@@ -120,4 +124,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(MixtapesActions, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MixtapesForm)
+export default connect(mapStateToProps, mapDispatchToProps)(CreateNewPlaylistForm)

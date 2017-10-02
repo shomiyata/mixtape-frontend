@@ -55,9 +55,13 @@ class Mixtapes {
         mode: 'cors',
         body: JSON.stringify(body)
       })
-    // .then(res => res.json())
+    .then(res => res.json())
   }
 
+  static getLastMixtapesSent(){
+    return fetch(`${url}/mixtapes/feed`)
+    .then(res => res.json())
+  }
 
 }
 

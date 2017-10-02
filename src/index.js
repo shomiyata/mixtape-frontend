@@ -10,8 +10,9 @@ import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import authReducer from './reducers/authReducer'
 import mixtapesReducer from './reducers/mixtapesReducer'
+import formsReducer from './reducers/formsReducer'
 
-const rootReducer = combineReducers({auth: authReducer, mixtapes: mixtapesReducer})
+const rootReducer = combineReducers( {auth: authReducer, mixtapes: mixtapesReducer, forms: formsReducer} )
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
 
 ReactDOM.render(<Provider store={store}><Router><App /></Router></Provider>, document.getElementById('root'));

@@ -5,7 +5,7 @@ const PlaylistCreateButton = (props) => {
 
   function handleClick() {
     localStorage.setItem("mixtapeId", props.spotifyPlaylistId)
-    localStorage.setItem("playlistName", props.playlistName)
+    localStorage.setItem("mixtapeName", props.mixtapeName)
   }
 
   return(

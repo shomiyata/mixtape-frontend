@@ -1,101 +1,84 @@
 import React from 'react'
-import { Feed, Icon } from 'semantic-ui-react'
+import { Feed, Icon, Message } from 'semantic-ui-react'
+import Mixtapes from '../adapters/mixtapes'
 
-const ActivityFeed = () => {
-  return(
-    <Feed className="feed">
-      <Feed.Event>
-        <Feed.Label>
-          <img src='/assets/images/avatar/small/elliot.jpg' />
-        </Feed.Label>
-        <Feed.Content>
-          <Feed.Summary>
-            <Feed.User>Elliot Fu</Feed.User> added you as a friend
-            <Feed.Date>1 Hour Ago</Feed.Date>
-          </Feed.Summary>
-          <Feed.Meta>
-            <Feed.Like>
-              <Icon name='like' />
-              4 Likes
-            </Feed.Like>
-          </Feed.Meta>
-        </Feed.Content>
-      </Feed.Event>
+class ActivityFeed extends React.Component {
+  constructor(){
+    super()
 
-      <Feed.Event>
-        <Feed.Label image='/assets/images/avatar/small/helen.jpg' />
-        <Feed.Content>
-          <Feed.Summary>
-            <a>Helen Troy</a> added <a>2 new illustrations</a>
-            <Feed.Date>4 days ago</Feed.Date>
-          </Feed.Summary>
-          <Feed.Extra images>
-            <a><img src='/assets/images/wireframe/image.png' /></a>
-            <a><img src='/assets/images/wireframe/image.png' /></a>
-          </Feed.Extra>
-          <Feed.Meta>
-            <Feed.Like>
-              <Icon name='like' />
-              1 Like
-            </Feed.Like>
-          </Feed.Meta>
-        </Feed.Content>
-      </Feed.Event>
+    this.state = {
+      lastFiveMixtapes: []
+    }
+  }
 
-      <Feed.Event>
-        <Feed.Label image='/assets/images/avatar/small/jenny.jpg' />
-        <Feed.Content>
-          <Feed.Summary date='2 Days Ago' user='Jenny Hess' content='add you as a friend' />
-          <Feed.Meta>
-            <Feed.Like>
-              <Icon name='like' />
-              8 Likes
-            </Feed.Like>
-          </Feed.Meta>
-        </Feed.Content>
-      </Feed.Event>
+  componentDidMount(){
+  const mixtapesSent = Mixtapes.getLastMixtapesSent()
+    .then(res => this.setState({ lastFiveMixtapes: res }, () => console.log('should show last 5 mixtapes', this.state)))
 
-      <Feed.Event>
-        <Feed.Label image='/assets/images/avatar/small/joe.jpg' />
-        <Feed.Content>
-          <Feed.Summary>
-            <a>Joe Henderson</a> posted on his page
-            <Feed.Date>3 days ago</Feed.Date>
-          </Feed.Summary>
-          <Feed.Extra text>
-            Ours is a life of constant reruns. We're always circling back to where we'd we started, then starting all
-            over again.
-          </Feed.Extra>
-          <Feed.Meta>
-            <Feed.Like>
-              <Icon name='like' />
-              5 Likes
-            </Feed.Like>
-          </Feed.Meta>
-        </Feed.Content>
-      </Feed.Event>
+  }
 
-      <Feed.Event>
-        <Feed.Label image='/assets/images/avatar/small/justen.jpg' />
-        <Feed.Content>
-          <Feed.Summary>
-            <a>Justen Kitsune</a> added <a>2 new photos</a> of you
-            <Feed.Date>4 days ago</Feed.Date>
-          </Feed.Summary>
-          <Feed.Extra images>
-            <a><img src='/assets/images/wireframe/image.png' /></a>
-            <a><img src='/assets/images/wireframe/image.png' /></a>
-          </Feed.Extra>
-          <Feed.Meta>
-            <Feed.Like>
-              <Icon name='like' />
-              41 Likes
-            </Feed.Like>
-          </Feed.Meta>
-        </Feed.Content>
-      </Feed.Event>
-    </Feed>
-  )
+  timeCreatedParsed = (timeCreated) => {
+  let newArr = []
+  timeCreated.replace(/[T,:,Z,-]/g,',').split(',').slice(0,5).map(n => { newArr.push(parseInt(n))})
+  return newArr
+  }
+
+  timeNow = () => {
+    let today = new Date();
+    let newArr = [today.getYear(), today.getMonth(), today.getHours(), today.getMinutes()]
+    return newArr
+  }
+
+  timeElapsed = (timeCreated) => {
+    let t = new Date();
+    if (t.getUTCFullYear() > this.timeCreatedParsed(timeCreated)[0]){
+      return 'a couple months ago'
+    } else if ((t.getUTCMonth() + 1) > this.timeCreatedParsed(timeCreated)[1]){
+      return 'a couple weeks ago'
+    } else if (t.getUTCDate() > this.timeCreatedParsed(timeCreated)[2]){
+      return `${t.getUTCDate() - this.timeCreatedParsed(timeCreated)[2]} days ago`
+    } else if (t.getUTCHours() > this.timeCreatedParsed(timeCreated)[3]){
+      return `${t.getUTCHours() - this.timeCreatedParsed(timeCreated)[3]} hour(s) ago`
+    } else if (t.getUTCMinutes() > this.timeCreatedParsed(timeCreated)[4]){
+      return `${t.getUTCMinutes() - this.timeCreatedParsed(timeCreated)[4]} minutes ago`
+    }
+  }
+
+  render(){
+
+    const feedItems =
+      this.state.lastFiveMixtapes.map(mixtape => {
+        return (<Feed.Event>
+          <Feed.Label>
+            <img src={mixtape.playlist_picture} />
+          </Feed.Label>
+          <Feed.Content>
+            <Feed.Summary>
+              {mixtape.sender_name} sent <a target="_blank" href={"http://localhost:3001/mixtapes/listen?" + mixtape.url}>{mixtape.name}</a><br/>
+              <Feed.Date>{this.timeElapsed(mixtape.created_at)}</Feed.Date>
+            </Feed.Summary>
+            {/* <Feed.Meta>
+              <Feed.Like>
+                <Icon name='like' />
+                4 Likes
+              </Feed.Like>
+            </Feed.Meta> */}
+          </Feed.Content>
+        </Feed.Event>
+      )}
+    )
+
+    return(
+      <Feed className="feed">
+        <Message id="recently-sent-mixtapes">
+        <Message.Header>
+          Recently sent mixtapes
+        </Message.Header>
+      </Message>
+        {feedItems}
+      </Feed>
+    )
+  }
 }
 
 export default ActivityFeed

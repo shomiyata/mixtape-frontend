@@ -24,7 +24,7 @@ class MixtapesContainer extends React.Component {
   componentDidMount(){
     console.log('props from mixtapes container', this.props)
 
-    if(!localStorage.getItem("token") && this.props.location.search){
+    if(this.props.location.search && !localStorage.getItem("token")){
       const code = Auth.decipherCode(this.props)
       const payload = { code: code }
 
