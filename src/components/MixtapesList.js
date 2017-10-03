@@ -30,13 +30,12 @@ import { connect } from 'react-redux'
                </a>
              </Card.Content>
           </Card>
-        )
-      })
+      )})
 
      return(
       <div>
           <Card.Group id="playlist-cards" >
-            {playlistCards}
+            {this.props.mixtapes? playlistCards : 'Loading'}
           </Card.Group>
       </div>
     )

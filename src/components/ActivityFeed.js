@@ -7,13 +7,13 @@ class ActivityFeed extends React.Component {
     super()
 
     this.state = {
-      lastFiveMixtapes: []
+      lastSevenMixtapes: []
     }
   }
 
   componentDidMount(){
   const mixtapesSent = Mixtapes.getLastMixtapesSent()
-    .then(res => this.setState({ lastFiveMixtapes: res }, () => console.log('should show last 5 mixtapes', this.state)))
+    .then(res => this.setState({ lastSevenMixtapes: res }, () => console.log('should show last 5 mixtapes', this.state)))
 
   }
 
@@ -45,28 +45,25 @@ class ActivityFeed extends React.Component {
   }
 
   render(){
-
-    const feedItems =
-      this.state.lastFiveMixtapes.map(mixtape => {
-        return (<Feed.Event>
-          <Feed.Label>
-            <img src={mixtape.playlist_picture} />
-          </Feed.Label>
-          <Feed.Content>
-            <Feed.Summary>
-              {mixtape.sender_name} sent <a target="_blank" href={"http://localhost:3001/mixtapes/listen?" + mixtape.url}>{mixtape.name}</a><br/>
-              <Feed.Date>{this.timeElapsed(mixtape.created_at)}</Feed.Date>
-            </Feed.Summary>
-            {/* <Feed.Meta>
-              <Feed.Like>
-                <Icon name='like' />
-                4 Likes
-              </Feed.Like>
-            </Feed.Meta> */}
-          </Feed.Content>
-        </Feed.Event>
-      )}
-    )
+    const feedItems = this.state.lastSevenMixtapes.map(mixtape => {
+      return (<Feed.Event>
+        <Feed.Label>
+          <img src={mixtape.playlist_picture} />
+        </Feed.Label>
+        <Feed.Content>
+          <Feed.Summary>
+            {mixtape.sender_name} sent <a target="_blank" href={"http://localhost:3001/mixtapes/listen?" + mixtape.url}>{mixtape.name}</a><br/>
+            <Feed.Date>{this.timeElapsed(mixtape.created_at)}</Feed.Date>
+          </Feed.Summary>
+          {/* <Feed.Meta>
+            <Feed.Like>
+              <Icon name='like' />
+              4 Likes
+            </Feed.Like>
+          </Feed.Meta> */}
+        </Feed.Content>
+      </Feed.Event>
+    )})
 
     return(
       <Feed className="feed">
@@ -75,7 +72,7 @@ class ActivityFeed extends React.Component {
           Recently sent mixtapes
         </Message.Header>
       </Message>
-        {feedItems}
+        {this.state.lastSevenMixtapes? feedItems : ''}
       </Feed>
     )
   }

@@ -60,7 +60,6 @@ class MixtapesForm extends React.Component{
       senderName: '',
       mixtapeNote: '',
       recipientEmail: '',
-      sendEmail: false,
     })
   }
 
@@ -73,7 +72,7 @@ class MixtapesForm extends React.Component{
       </Form.Field>
     )
 
-    const urlMessage = this.props.submittedMixtape ? <MixtapesLink url={this.props.submittedMixtape.url} /> : ''
+    const urlMessage = this.props.submittedMixtape ? <MixtapesLink url={this.props.submittedMixtape.url} email={this.props.submittedMixtape.email_required} /> : ''
 
     return(
       <div>
