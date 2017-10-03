@@ -7,13 +7,13 @@ class ActivityFeed extends React.Component {
     super()
 
     this.state = {
-      lastSevenMixtapes: []
+      lastMixtapes: []
     }
   }
 
   componentDidMount(){
   const mixtapesSent = Mixtapes.getLastMixtapesSent()
-    .then(res => this.setState({ lastSevenMixtapes: res }, () => console.log('should show last 5 mixtapes', this.state)))
+    .then(res => this.setState({ lastMixtapes: res }, () => console.log('should show last 5 mixtapes', this.state)))
 
   }
 
@@ -45,7 +45,7 @@ class ActivityFeed extends React.Component {
   }
 
   render(){
-    const feedItems = this.state.lastSevenMixtapes.map(mixtape => {
+    const feedItems = this.state.lastMixtapes.map(mixtape => {
       return (<Feed.Event>
         <Feed.Label>
           <img src={mixtape.playlist_picture} />
@@ -72,7 +72,7 @@ class ActivityFeed extends React.Component {
           Recently sent mixtapes
         </Message.Header>
       </Message>
-        {this.state.lastSevenMixtapes? feedItems : ''}
+        {this.state.lastMixtapes? feedItems : ''}
       </Feed>
     )
   }
