@@ -27,7 +27,9 @@ class SuccessfullyAdded extends React.Component {
         "mixtapeName": localStorage.getItem("mixtapeName")
       }
 
-      if(!localStorage.getItem("mixtapeName")){
+      if(this.props.location.search == '?error=access_denied'){
+        window.history.back()
+      } else if(!localStorage.getItem("mixtapeName")){
         this.props.history.push("/")
       } else {
       Auth.permission(payload)

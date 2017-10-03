@@ -13,7 +13,7 @@ class MixtapesFormContainer extends React.Component{
         <Message id="mixtapes-form-container">
           <MixtapesForm />
         </Message>
-          {this.props.formOpen ? <Message id="playlist-form-container"><CreateNewPlaylistForm /></Message> : ''}
+          {/* {this.props.formOpen ? <Message id="playlist-form-container"><CreateNewPlaylistForm /></Message> : ''} */}
       </div>
     )
   }

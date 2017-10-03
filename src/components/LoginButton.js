@@ -26,9 +26,10 @@ class LoginButton extends React.Component {
 }
 
 function mapStateToProps(state) {
-  console.log('this is state in mapsStateToProps', state)
   return {
     isLoading: state.auth.isLoading,
+    loggedIn: state.auth.loggedIn,
+    currentUserId: state.auth.currentUserId
   }
 }
 

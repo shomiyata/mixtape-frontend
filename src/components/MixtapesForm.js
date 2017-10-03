@@ -77,7 +77,7 @@ class MixtapesForm extends React.Component{
     return(
       <div>
         {urlMessage}
-        <CreateNewPlaylistButton />
+        {/* <CreateNewPlaylistButton /> */}
         <MixtapesModal handlePlaylistClick={this.handlePlaylistClick} />
         <Form onSubmit={this.handleSubmit}>
           <Form.Field >

@@ -23,8 +23,11 @@ class MixtapesContainer extends React.Component {
 
   componentDidMount(){
     console.log('props from mixtapes container', this.props)
+    console.log('is the error message in here?', )
 
-    if(this.props.location.search && !localStorage.getItem("token")){
+    if(this.props.location.search == '?error=access_denied'){
+      window.location = "http://localhost:3001/login"
+    } else if(this.props.location.search && !localStorage.getItem("token")){
       const code = Auth.decipherCode(this.props)
       const payload = { code: code }
 
