@@ -150,6 +150,10 @@ body {
   font-size: 2vh;
 }
 
+.ui.feed>.event>.label {
+  width: 18%;
+}
+
 #background-all {
   width: 100%;
   min-height: 100vh;
