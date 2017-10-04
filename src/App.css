@@ -50,11 +50,17 @@ body {
   width: 100%;
   font-size: 350%;
   margin-top: 50px;
-  font-weight: bold;
+  /*font-weight: bold;*/
+  font-family: 'Permanent Marker', cursive;
 }
 
 .ui.button {
   border-radius: 0;
+  font-weight: 100;
+}
+
+.ui.card, .ui.cards>.card {
+  box-shadow: 0 0px 0px 0 #d4d4d5, 0 0 0 0px #d4d4d5
 }
 
 .main-button {
@@ -101,11 +107,14 @@ body {
 }
 
 .main-logo {
-  font-size: 180%;
+  font-size: 200%;
   padding-left: 15px;
   color: #FFFFFF;
   font-style: italic;
   font-weight: 900;
+  /*font-family: 'Bangers', cursive;*/
+  /*font-family: 'Vampiro One', cursive;*/
+  /*font-family: 'Permanent Marker', cursive;*/
 }
 
 .feed {
@@ -119,6 +128,11 @@ body {
   opacity: 0.90;
   height: 69vh;
   padding: 0.75%;
+  overflow: auto;
+}
+
+.scrollbar {
+  overflow: auto;
 }
 
 .ui.feed>.event>.label+.content {
@@ -154,6 +168,19 @@ body {
   width: 18%;
 }
 
+.credit {
+  font-size: 75%;
+  position: absolute;
+  bottom: 0;
+  left: 35%;
+}
+
+.tracks-list {
+  /*min-height: 36vh;*/
+  max-height: 31vh;
+  overflow: auto;
+}
+
 #background-all {
   width: 100%;
   min-height: 100vh;
@@ -175,6 +202,28 @@ body {
   vertical-align: middle;
   margin-top: 20px;
 }
+
+.ui.card>.content>.header:not(.ui), .ui.cards>.card>.content>.header:not(.ui){
+  font-weight: 100;
+}
+
+.ui.secondary.inverted.pointing.menu .active.item {
+  font-weight: 100;
+}
+
+.ui.form .field>label {
+  font-weight: 100;
+}
+
+.ui.message .header:not(.ui) {
+  font-weight: 100;
+  font-size: 1em;
+}
+
+.flex {
+  display: flex;
+}
+
 
 /*#note-button-center {
   margin-left: 700%;
@@ -200,9 +249,9 @@ body {
   display: inline-block;
   margin: auto;
   margin-top: 6%;
-  margin-left: 27%;
+  margin-left: 12%;
   margin-right: 2%;
-  width: 45%;
+  width: 36%;
 }
 
 #playlist-form-container {
@@ -211,6 +260,8 @@ body {
   margin-top: 6%;
   margin-right: 13%;
   width: 36%;
+  /*min-height: 68vh;*/
+  padding-top: 0;
 }
 
 #mixtape-form {
@@ -239,7 +290,6 @@ body {
 
 #search-field {
   width: 85%;
-  margin-left: 1.6%;
 }
 
 #search-button {
@@ -252,7 +302,6 @@ body {
   border-radius: 0;
   font-weight: 100;
 }
-
 /*cassette*/
 
 *,

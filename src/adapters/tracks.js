@@ -27,6 +27,16 @@ class Tracks {
     .then(res => res.json())
   }
 
+  static searchTracks(searchQuery, token){
+    return fetch(`${url}/tracks/${searchQuery}`,
+    {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+      }
+    })
+    .then(res => res.json())
+  }
 
 
   // static createPlaylist(userId, token, body){

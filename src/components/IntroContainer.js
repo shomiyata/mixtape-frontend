@@ -16,7 +16,7 @@ class IntroContainer extends React.Component {
       <div className="main-header">save the mixtapes.</div>
       <div id="cassette"><Cassette /></div>
       <LoginButton />
-    </div>
+  </div>
   )
   }
 }

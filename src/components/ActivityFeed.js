@@ -36,11 +36,11 @@ class ActivityFeed extends React.Component {
     } else if ((t.getUTCMonth() + 1) > this.timeCreatedParsed(timeCreated)[1]){
       return 'a couple weeks ago'
     } else if (t.getUTCDate() > this.timeCreatedParsed(timeCreated)[2]){
-      return `${t.getUTCDate() - this.timeCreatedParsed(timeCreated)[2]} days ago`
+      return `${t.getUTCDate() - this.timeCreatedParsed(timeCreated)[2]} day(s) ago`
     } else if (t.getUTCHours() > this.timeCreatedParsed(timeCreated)[3]){
       return `${t.getUTCHours() - this.timeCreatedParsed(timeCreated)[3]} hour(s) ago`
     } else if (t.getUTCMinutes() > this.timeCreatedParsed(timeCreated)[4]){
-      return `${t.getUTCMinutes() - this.timeCreatedParsed(timeCreated)[4]} minutes ago`
+      return `${t.getUTCMinutes() - this.timeCreatedParsed(timeCreated)[4]} minute(s) ago`
     }
   }
 

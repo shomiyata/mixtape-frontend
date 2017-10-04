@@ -10,10 +10,12 @@ class MixtapesFormContainer extends React.Component{
     return(
       <div>
         <div className="main-header">send a mixtape.</div>
-        <Message id="mixtapes-form-container">
-          <MixtapesForm />
-        </Message>
-          {/* {this.props.formOpen ? <Message id="playlist-form-container"><CreateNewPlaylistForm /></Message> : ''} */}
+        <div className="flex">
+          <Message id="mixtapes-form-container">
+            <MixtapesForm />
+          </Message>
+            {this.props.formOpen ? <Message id="playlist-form-container"><CreateNewPlaylistForm /></Message> : ''}
+        </div>
       </div>
     )
   }
