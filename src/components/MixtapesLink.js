@@ -1,7 +1,7 @@
 import React from 'react'
 import { Message } from 'semantic-ui-react'
 import { Dimmer, Loader, Image, Segment } from 'semantic-ui-react'
-import frontUrl from '../adapters/fronturl'
+import frontUrl from '../adapters/frontUrl'
 
 const MixtapesLink = (props) => {
   console.log(props)
