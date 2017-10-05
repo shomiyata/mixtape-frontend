@@ -32,7 +32,7 @@ import * as MixtapesActions from '../actions/mixtapes'
           <List.Item>
             {playlist.images[0] ? <Image avatar src={playlist.images[0].url} /> : <Image avatar src="../../default_album_cover.jpg" />}
             <List.Content>
-              <List.Header className="playlist-header" value={playlist.name} onClick={this.handlePlaylistClick}>{playlist.name}</List.Header>
+              <List.Header value={playlist.name} onClick={this.handlePlaylistClick}>{playlist.name}</List.Header>
               <a href={playlist.external_urls.spotify} target="_blank">Open playlist</a>
             </List.Content>
           </List.Item>
