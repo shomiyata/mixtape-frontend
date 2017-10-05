@@ -1,4 +1,4 @@
-const frontUrl = "http://mixtapesarentdead.herokuapp.com"
+const frontUrl = "https://mixtapesarentdead.herokuapp.com"
 //export url to abstract it
 
 export default frontUrl
