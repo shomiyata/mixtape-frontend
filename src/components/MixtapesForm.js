@@ -47,7 +47,8 @@ class MixtapesForm extends React.Component{
     })
   }
 
-  handleSubmit = () => {
+  handleSubmit = (e) => {
+    e.preventDefault()
     this.setState({ isLoading: true })
     const bodyToSubmit = {...this.state}
     this.props.handleMixtapeSubmit(this.state)
