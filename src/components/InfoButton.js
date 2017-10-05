@@ -6,26 +6,26 @@ const InfoButton = () => {
 
   return(
     <div className='main-button'>
-      <Modal trigger={<Button size='massive' name="info" color='pink'>info</Button>} basic size='small'>
+      <Modal trigger={<Button size='massive' name="info" color='pink'>info</Button>}>
         <Header icon='help' content='how this works' />
         <Modal.Content>
           <List>
             <List.Item as='a'>
               <Icon name='right triangle' />
               <List.Content>
-                <List.Header className="info-header">Create a spotify account if you don't have one (it's free!)</List.Header>
+                <List.Header>Create a spotify account if you don't have one (it's free!)</List.Header>
               </List.Content>
             </List.Item><br/>
             <List.Item as='a'>
               <Icon name='right triangle' />
               <List.Content>
-                <List.Header className="info-header">Create your mixtape (playlist) on Spotify</List.Header>
+                <List.Header>Create your mixtape (playlist) on Spotify</List.Header>
               </List.Content>
             </List.Item><br/>
             <List.Item as='a'>
               <Icon name='right triangle' />
               <List.Content>
-                <List.Header className="info-header">Log in to your spotify on our website</List.Header>
+                <List.Header>Log in to your spotify on our website</List.Header>
                 <List.Description>
                   *We have no access to your playlists unless you login
                 </List.Description>
@@ -34,7 +34,7 @@ const InfoButton = () => {
             <List.Item as='a'>
               <Icon name='right triangle' />
               <List.Content>
-                <List.Header className="info-header">Select your Spotify playlist OR create a playlist that you'd like to send and add a message! </List.Header>
+                <List.Header>Select your Spotify playlist OR create a playlist that you'd like to send and add a message! </List.Header>
                 <List.Description>
                   *If you need help selecting a song, use our recommendation tool
                 </List.Description>
@@ -43,7 +43,7 @@ const InfoButton = () => {
             <List.Item as='a'>
               <Icon name='right triangle' />
               <List.Content>
-                <List.Header className="info-header">Specify the recipient by email, or send them a direct link to the mixtape</List.Header>
+                <List.Header>Specify the recipient by email, or send them a direct link to the mixtape</List.Header>
                 <List.Description>
                   *Recipients do not need a Spotify account to listen to your mixtape
                 </List.Description>
@@ -52,7 +52,7 @@ const InfoButton = () => {
             <List.Item as='a'>
               <Icon name='right triangle' />
               <List.Content>
-                <List.Header className="info-header">Recipient can save the mixtape to their Spotify account if they have one!</List.Header>
+                <List.Header>Recipient can save the mixtape to their Spotify account if they have one!</List.Header>
               </List.Content>
             </List.Item>
           </List>

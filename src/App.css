@@ -221,11 +221,6 @@ body {
    -webkit-transition: opacity 0.75s linear;
 }​
 
-
-.info-header {
-  color: white;
-}
-
 .ui.list>.item a {
   font-weight: 100;
 }
