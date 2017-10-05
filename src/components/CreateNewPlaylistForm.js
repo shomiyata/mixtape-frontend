@@ -161,7 +161,7 @@ class CreateNewPlaylistForm extends React.Component{
             {trackList}
             </div>
           </Form.Field>
-            <Button type='submit' color="pink" onClick={this.handleSubmit}>hit it!</Button>
+            <Button color="pink" onClick={this.handleSubmit}>hit it!</Button>
         </Form>
       </div>
     )
