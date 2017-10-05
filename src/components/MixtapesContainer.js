@@ -6,6 +6,7 @@ import * as AuthActions from '../actions/auth'
 import * as MixtapesActions from '../actions/mixtapes'
 import { bindActionCreators } from 'redux'
 import MixtapesListContainer from './MixtapesListContainer'
+import frontUrl from '../adapters/frontUrl'
 
 
 class MixtapesContainer extends React.Component {
