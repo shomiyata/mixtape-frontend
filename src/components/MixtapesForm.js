@@ -97,7 +97,7 @@ class MixtapesForm extends React.Component{
             <Checkbox label='Send mixtape via email' onChange={this.handleEmailInput} value={this.state.sendEmail} />
           </Form.Field>
             {this.state.sendEmail? mailField : ''}
-            <Button color="teal" onClick={this.handleSubmit}>wind it!</Button>
+            <Button type="button" color="teal" onClick={this.handleSubmit}>wind it!</Button>
         </Form>
       </div>
     )
