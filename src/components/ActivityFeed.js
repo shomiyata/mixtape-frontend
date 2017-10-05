@@ -53,7 +53,7 @@ class ActivityFeed extends React.Component {
         </Feed.Label>
         <Feed.Content>
           <Feed.Summary>
-            {mixtape.sender_name} sent <a target="_blank" href={`${frontUrl}/mixtapes/listen?${mixtape.url}>${mixtape.name}`}</a><br/>
+            {mixtape.sender_name} sent <a target="_blank" href={`${frontUrl}/mixtapes/listen?${mixtape.url}`}>{mixtape.name}</a><br/>
             <Feed.Date>{this.timeElapsed(mixtape.created_at)}</Feed.Date>
           </Feed.Summary>
         </Feed.Content>
