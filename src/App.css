@@ -156,6 +156,10 @@ body {
   font-size: 0.8em;
 }
 
+.ui.card>:first-child, .ui.cards>.card>:first-child {
+  border-radius: 0;
+}
+
 .ui.modal {
   left: 65%;
 }
