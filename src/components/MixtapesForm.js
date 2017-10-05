@@ -48,20 +48,18 @@ class MixtapesForm extends React.Component{
   }
 
   handleSubmit = (e) => {
-    e.preventDefault()
     this.setState({ isLoading: true })
     const bodyToSubmit = {...this.state}
     this.props.handleMixtapeSubmit(this.state)
     Mixtapes.createPlaylist(this.props.currentUserId, localStorage.getItem("token"), this.state)
       .then(res => this.props.handleMixtapeSubmit(res))
-
-    this.setState({
-      playlistName: '',
-      mixtapeName: '',
-      senderName: '',
-      mixtapeNote: '',
-      recipientEmail: '',
-    })
+      .then(res => this.setState({
+        playlistName: '',
+        mixtapeName: '',
+        senderName: '',
+        mixtapeNote: '',
+        recipientEmail: '',
+      }))
   }
 
 
