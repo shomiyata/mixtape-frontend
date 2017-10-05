@@ -29,12 +29,25 @@ class Tracks {
 
   static searchTracks(searchQuery, token){
     return fetch(`${url}/tracks/${searchQuery}`,
-    {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Accept': 'application/json'
+      {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Accept': 'application/json'
+        }
       }
-    })
+    )
+    .then(res => res.json())
+  }
+
+  static recommendTracks(seedTracks, token){
+    return fetch(`${url}/tracks/recommend/${seedTracks}`,
+      {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Accept': 'application/json'
+        }
+      }
+    )
     .then(res => res.json())
   }
 

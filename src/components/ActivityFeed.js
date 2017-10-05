@@ -69,7 +69,7 @@ class ActivityFeed extends React.Component {
       <Feed className="feed">
         <Message id="recently-sent-mixtapes">
         <Message.Header>
-          Recently sent mixtapes
+          RECENTLY SENT MIXTAPES
         </Message.Header>
       </Message>
         {this.state.lastMixtapes? feedItems : ''}

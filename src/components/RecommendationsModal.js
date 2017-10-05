@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Header, Icon, Modal, Image } from 'semantic-ui-react'
 
-class CreateNewPlaylistModal extends React.Component {
+class RecommendationsModal extends React.Component {
   constructor(){
     super()
 
@@ -25,9 +25,11 @@ class CreateNewPlaylistModal extends React.Component {
   }
 
   render() {
+
+    console.log('this is track info in rec', this.props.trackInfo)
     let trackContent = ''
     if(this.props.trackInfo){
-      trackContent = this.props.trackInfo.tracks.items.map(track => {
+      trackContent = this.props.trackInfo.tracks.map(track => {
         return(
           <Modal.Content image>
             <Image wrapped size='small' src={track.album.images[0].url} />
@@ -45,15 +47,15 @@ class CreateNewPlaylistModal extends React.Component {
     return (
       <Modal
         className="scrollbar" id="search-result-modal"
-        trigger={<Button onClick={this.handleOpen} circular icon='search' color='pink' id='search-button'></Button>}
+        trigger={<Button onClick={this.handleOpen} circular icon='wizard' color='pink' id='search-button'></Button>}
         open={this.state.modalOpen}
         onClose={this.handleClose}
       >
-        <Modal.Header>search results..</Modal.Header>
+        <Modal.Header>recommendations..</Modal.Header>
           {trackContent}
       </Modal>
     )
   }
 }
 
-export default CreateNewPlaylistModal
+export default RecommendationsModal

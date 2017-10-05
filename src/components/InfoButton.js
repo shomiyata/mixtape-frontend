@@ -34,7 +34,10 @@ const InfoButton = () => {
             <List.Item as='a'>
               <Icon name='right triangle' />
               <List.Content>
-                <List.Header>Select the playlist you'd like to send and add a small note if you'd like to</List.Header>
+                <List.Header>Select your Spotify playlist OR create a playlist that you'd like to send and add a message! </List.Header>
+                <List.Description>
+                  *If you need help selecting a song, use our recommendation tool
+                </List.Description>
               </List.Content>
             </List.Item><br/>
             <List.Item as='a'>

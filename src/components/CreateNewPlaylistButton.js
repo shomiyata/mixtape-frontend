@@ -8,7 +8,7 @@ const CreateNewPlaylistButton = (props) => {
 
   console.log('dispatch methods in CreateNewPlaylistButton', props)
   return(
-    <Button color='pink' onClick={props.toggleForm} >
+    <Button onClick={props.toggleForm} >
       create playlist
     </Button>
   )

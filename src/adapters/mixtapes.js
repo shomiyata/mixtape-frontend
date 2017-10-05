@@ -25,7 +25,6 @@ class Mixtapes {
   }
 
   static createPlaylist(userId, token, body){
-    console.log(body)
     return fetch(`${url}/users/${userId}/mixtapes/new`,
       {
         method: 'POST',

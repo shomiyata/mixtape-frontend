@@ -37,7 +37,6 @@ menuItems = () => {
         <Menu.Item name='LOADING!' />
       </Menu.Menu>
         )
-    // return (<h1>{this.props.loading} </h1>)
   } else if(!localStorage.getItem('token')){
     return(
       <Menu.Menu position='right'>
