@@ -70,7 +70,9 @@ body {
 }
 
 .ui.list>.item .header {
-  color: white;
+  color: black;
+  font-weight: 100;
+  cursor: pointer;
 }
 
 .ui.list>a.item i.icon {
@@ -220,10 +222,8 @@ body {
 }​
 
 
-.playlist-header {
-  color: black;
-  font-weight: 100;
-  cursor: pointer;
+.info-header {
+  color: white;
 }
 
 .ui.list>.item a {
