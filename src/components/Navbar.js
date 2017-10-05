@@ -25,7 +25,7 @@ class Navbar extends Component {
   handleLoginClick = () => {
     this.props.isLoading(true)
     localStorage.setItem("loading", true)
-    window.location = `${url}/api/v1/login`
+    window.location = `${url}/login`
   }
 
 

@@ -12,7 +12,7 @@ class LoginButton extends React.Component {
   handleButton = () => {
     this.props.isLoading(true)
     localStorage.setItem("loading", true)
-    window.location = `${url}/api/v1/login`
+    window.location = `${url}/login`
   }
 
 
