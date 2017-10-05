@@ -5,13 +5,14 @@ import { connect } from 'react-redux'
 import InfoButton from './InfoButton'
 import * as AuthActions from '../actions/auth'
 import { bindActionCreators } from 'redux'
+import url from '../adapters/url'
 
 class LoginButton extends React.Component {
 
   handleButton = () => {
     this.props.isLoading(true)
     localStorage.setItem("loading", true)
-    window.location = "http://localhost:3000/api/v1/login"
+    window.location = `${url}/api/v1/login`
   }
 
 

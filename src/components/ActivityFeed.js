@@ -1,6 +1,7 @@
 import React from 'react'
 import { Feed, Icon, Message } from 'semantic-ui-react'
 import Mixtapes from '../adapters/mixtapes'
+import frontUrl from '../adapters/fronturl'
 
 class ActivityFeed extends React.Component {
   constructor(){
@@ -52,15 +53,9 @@ class ActivityFeed extends React.Component {
         </Feed.Label>
         <Feed.Content>
           <Feed.Summary>
-            {mixtape.sender_name} sent <a target="_blank" href={"http://localhost:3001/mixtapes/listen?" + mixtape.url}>{mixtape.name}</a><br/>
+            {mixtape.sender_name} sent <a target="_blank" href={frontUrl} + '/mixtapes/listen?' + {mixtape.url}>{mixtape.name}</a><br/>
             <Feed.Date>{this.timeElapsed(mixtape.created_at)}</Feed.Date>
           </Feed.Summary>
-          {/* <Feed.Meta>
-            <Feed.Like>
-              <Icon name='like' />
-              4 Likes
-            </Feed.Like>
-          </Feed.Meta> */}
         </Feed.Content>
       </Feed.Event>
     )})

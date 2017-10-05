@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card, Icon, Image } from 'semantic-ui-react'
 import { connect } from 'react-redux'
+import frontUrl from '../adapters/fronturl'
 
  class MixtapesList extends React.Component {
 
@@ -8,7 +9,7 @@ import { connect } from 'react-redux'
    render(){
      const playlistCards = this.props.mixtapes.map(mixtape => {
         return (
-          <Card href={'http://localhost:3001/mixtapes/listen?' + mixtape.url} target="_blank">
+          <Card href={frontUrl} + '/mixtapes/listen?' + {mixtape.url} target="_blank">
             <Image src={mixtape.playlist_picture ? mixtape.playlist_picture : "../../default_album_cover.jpg"} />
             <Card.Content>
               <Card.Header>

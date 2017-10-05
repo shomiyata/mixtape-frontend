@@ -1,12 +1,13 @@
 import React from 'react'
 import LoginButton from './LoginButton'
 import Cassette from './Cassette'
+import url from '../adapters/url'
 
 class IntroContainer extends React.Component {
 
   componentDidMount(){
     if(localStorage.getItem('token')){
-      window.location = "http://localhost:3001/login"
+      window.location = `${url}/login`
     }
   }
 

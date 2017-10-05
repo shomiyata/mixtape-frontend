@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button } from 'semantic-ui-react'
+import url from '../adapters/url'
 
 const PlaylistCreateButton = (props) => {
 
@@ -9,7 +10,7 @@ const PlaylistCreateButton = (props) => {
   }
 
   return(
-      <Button size='large' name="add-playlist" color='yellow' as="a" href={"http://localhost:3000/api/v1/permission/"} onClick={handleClick}>add to Spotify</Button>
+      <Button size='large' name="add-playlist" color='yellow' as="a" href={`${url}/permission/`} onClick={handleClick}>add to Spotify</Button>
   )
 }
 

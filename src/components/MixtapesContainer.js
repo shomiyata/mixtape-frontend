@@ -24,7 +24,7 @@ class MixtapesContainer extends React.Component {
   componentDidMount(){
 
     if(this.props.location.search == '?error=access_denied'){
-      window.location = "http://localhost:3001/login"
+      window.location = `${frontUrl}/login`
     } else if(this.props.location.search && !localStorage.getItem("token")){
       const code = Auth.decipherCode(this.props)
       const payload = { code: code }

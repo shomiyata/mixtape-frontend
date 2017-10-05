@@ -1,7 +1,7 @@
 import React from 'react'
 import { Message } from 'semantic-ui-react'
 import { Dimmer, Loader, Image, Segment } from 'semantic-ui-react'
-
+import frontUrl from '../adapters/fronturl'
 
 const MixtapesLink = (props) => {
   console.log(props)
@@ -10,14 +10,14 @@ const MixtapesLink = (props) => {
        color='teal'
         icon='hand spock'
         header='Your mixtape is now live and sent via email!'
-        content={`http://localhost:3001/mixtapes/listen?${props.url}`}
+        content={`${frontUrl}/mixtapes/listen?${props.url}`}
       />)
   } else if(props.url) {
        return (<Message
          color='teal'
           icon='hand spock'
           header='Your mixtape is now live!'
-          content={`http://localhost:3001/mixtapes/listen?${props.url}`}
+          content={`${frontUrl}/mixtapes/listen?${props.url}`}
         />)
   } else {
     return (<Segment>

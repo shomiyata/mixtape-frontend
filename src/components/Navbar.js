@@ -4,6 +4,7 @@ import { Router } from 'react-router-dom';
 import { connect } from 'react-redux'
 import * as AuthActions from '../actions/auth'
 import { bindActionCreators } from 'redux'
+import url from '../adapters/url'
 
 class Navbar extends Component {
   state = { activeItem: 'YOUR MIXTAPES' }
@@ -24,7 +25,7 @@ class Navbar extends Component {
   handleLoginClick = () => {
     this.props.isLoading(true)
     localStorage.setItem("loading", true)
-    window.location = "http://localhost:3000/api/v1/login"
+    window.location = `${url}/api/v1/login`
   }
 
 
