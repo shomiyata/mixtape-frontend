@@ -25,28 +25,19 @@ const InfoButton = () => {
             <List.Item as='a'>
               <Icon name='right triangle' />
               <List.Content>
-                <List.Header>Log in to your spotify on our website</List.Header>
-                <List.Description>
-                  *We have no access to your playlists unless you login
-                </List.Description>
+                <List.Header>Log in to your spotify on our website<br/>*We have no access to your playlists unless you login</List.Header>
               </List.Content>
             </List.Item><br/>
             <List.Item as='a'>
               <Icon name='right triangle' />
               <List.Content>
-                <List.Header>Select your Spotify playlist OR create a playlist that you'd like to send and add a message! </List.Header>
-                <List.Description>
-                  *If you need help selecting a song, use our recommendation tool
-                </List.Description>
+                <List.Header>Select your Spotify playlist OR create a playlist that you'd like to send and add a message<br/>*If you need help selecting a song, use the recommendation tool!</List.Header>
               </List.Content>
             </List.Item><br/>
             <List.Item as='a'>
               <Icon name='right triangle' />
               <List.Content>
-                <List.Header>Specify the recipient by email, or send them a direct link to the mixtape</List.Header>
-                <List.Description>
-                  *Recipients do not need a Spotify account to listen to your mixtape
-                </List.Description>
+                <List.Header>Specify the recipient by email, or send them a direct link to the mixtape<br/>*Recipients do not need a Spotify account to listen to your mixtape</List.Header>
               </List.Content>
             </List.Item><br/>
             <List.Item as='a'>
