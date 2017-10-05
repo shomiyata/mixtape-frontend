@@ -9,7 +9,7 @@ import frontUrl from '../adapters/frontUrl'
    render(){
      const playlistCards = this.props.mixtapes.map(mixtape => {
         return (
-          <Card href={frontUrl} + '/mixtapes/listen?' + {mixtape.url} target="_blank">
+          <Card href={`${frontUrl}/mixtapes/listen?${mixtape.url}`} target="_blank">
             <Image src={mixtape.playlist_picture ? mixtape.playlist_picture : "../../default_album_cover.jpg"} />
             <Card.Content>
               <Card.Header>
