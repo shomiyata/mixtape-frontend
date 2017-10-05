@@ -89,6 +89,7 @@ class CreateNewPlaylistForm extends React.Component{
   }
 
   handleSubmit = (e) => {
+    e.preventDefault()
     const body = {
       "playlistName": this.state.playlistName,
       "trackUris": this.state.selectedTracks.map( track => track.uri )
