@@ -190,7 +190,6 @@ body {
   cursor: pointer;
 }
 
-
 #background-all {
   width: 100%;
   min-height: 100vh;
@@ -221,7 +220,7 @@ body {
 }​
 
 
-#playlist-header {
+.playlist-header {
   color: black;
   font-weight: 100;
   cursor: pointer;
