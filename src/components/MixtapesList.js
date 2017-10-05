@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, Icon, Image } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import frontUrl from '../adapters/fronturl'
+import frontUrl from '../adapters/frontUrl'
 
  class MixtapesList extends React.Component {
 

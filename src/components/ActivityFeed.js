@@ -1,7 +1,7 @@
 import React from 'react'
 import { Feed, Icon, Message } from 'semantic-ui-react'
 import Mixtapes from '../adapters/mixtapes'
-import frontUrl from '../adapters/fronturl'
+import frontUrl from '../adapters/frontUrl'
 
 class ActivityFeed extends React.Component {
   constructor(){
